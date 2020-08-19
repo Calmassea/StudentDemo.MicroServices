@@ -1,0 +1,109 @@
+﻿@model StudentDemo.ScoreWebClient.ViewModels.StudentScoreViewModel
+@{
+    ViewData["Title"] = "学生编辑页面";
+}
+@{
+    await Html.RenderPartialAsync("~/Views/Shared/CssPartial/_FormStylePartial.cshtml");
+}
+@Html.AntiForgeryToken()
+<div class="row justify-content-center">
+    <div class="col-md-10
+         col-11 ">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class=" text-center">@{var name ="学生ID为："+ Model.studentScore.StudentId + "的信息编辑";} @name</h3>
+                        <p class="text-center font-14 mb-0">
+                            以下均为测试数据
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <form asp-action="Edit"
+                              data-ajax-failure="onFailed"
+                              data-ajax-success="onSuccess"
+                              data-ajax="true"
+                              data-ajax-confirm="确认要提交吗？"
+                              data-ajax-method="post">
+                            <div class="form-group mb-2">
+                                <div class="row">
+                                    <div class="col-2"><span class="align-middle"><label>分数ID：</label></span></div>
+                                    <div class="col-10"><input type="text" asp-for="studentScore.Id" readonly class="form-control-plaintext" id="scoreid" value="@Model.studentScore.Id"></div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>学生ID：</label>
+                                <input type="text" asp-for="studentScore.StudentId" id="studentid" class="form-control" value="@Model.studentScore.StudentId">
+                                <span class="help-block"><small>学生ID.</small></span>
+                                <span asp-validation-for="studentScore.StudentId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>语文：</label>
+                                <input class="form-control" asp-for="studentScore.Chinese" id="chinese" type="number" value="@Model.studentScore.Chinese">
+                            </div>
+                            @*<div class="form-group mb-3">
+                                    <label>IP 地址：</label>
+                                    <input type="text"asp-for="Student.ip" class="form-control" id="sip" value="@Model.Student.ip">
+                                    <span class="font-13 text-muted">格式 "xxx.xxx.xxx.xxx"</span>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label>端口：</label>
+                                    <input type="text"asp-for="Student.port" class="form-control" id="sport" value="@Model.Student.port">
+                                    <span class="help-block"><small>端口号.</small></span>
+                                </div>*@
+
+                            <div class="form-row mb-3">
+                                <div class="form-group col-md-6">
+                                    <label>数学：</label>
+                                    <input  asp-for="studentScore.Maths" id="maths" class="form-control" value="@Model.studentScore.Maths">
+                                    <span class="help-block"><small>数学分数.</small></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>英语：</label>
+                                    <input  asp-for="studentScore.English" id="english" class="form-control" value="@Model.studentScore.English">
+                                    <span class="help-block"><small>英语分数.</small></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-12">
+                                    <button type="submit" class="btn btn-block btn-primary">确认修改</button>
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <a type="button" class="btn btn-block btn-light" asp-controller="StudentScore" asp-action="Index">取消返回</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("~/Views/Shared/ScriptsPartial/_JQueryUIScriptPartial.cshtml");
+        await Html.RenderPartialAsync("~/Views/Shared/ScriptsPartial/_ValidationScriptsPartial.cshtml");
+    }
+    <script type="text/javascript">
+        var onSuccess = function (context) {
+            console.log(context.entities);
+            var result = context.entities;
+             console.log(result.id);
+            $("#studentid").val(result.studentId);
+            $("#chinese").val(result.chinese);
+            //$("#sip").val(result.ip);
+            //$("#sport").val(result.port);
+            $("#maths").val(result.maths);
+            $("#english").val(result.english);
+            alert("更新成功！");
+        };
+        var onFailed = function (context) {
+            alert("更新失败！");
+        };
+        
+    </script>
+}

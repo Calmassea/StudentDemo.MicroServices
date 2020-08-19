@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StudentDemo.ScoreWebapi</name>
+    </assembly>
+    <members>
+        <member name="T:StudentDemo.ScoreWebapi.Controllers.HealthController">
+            <summary>
+            健康检查
+            </summary>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Controllers.HealthController.Index">
+            <summary>
+            健康检查接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Controllers.StudentScoreController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,StudentDemo.Tools.Services.ICommonService,StudentDemo.ScoreWebapi.Models.ScoreDbContext)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Controllers.StudentScoreController.Get">
+            <summary>
+            获取所有成绩
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Controllers.StudentScoreController.Get(System.Int32)">
+            <summary>
+            查找一个成绩
+            </summary>
+            <param name="ScoreId">分数id</param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Controllers.StudentScoreController.StuGet(System.Int32)">
+            <summary>
+            查找一个学生的成绩
+            </summary>
+            <param name="StudentId">学生id</param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Controllers.StudentScoreController.Post(StudentDemo.DominStd.Entities.ScoreModel)">
+            <summary>
+            新增一条成绩
+            </summary>
+            <param name="entity">成绩实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Controllers.StudentScoreController.Put(StudentDemo.DominStd.Entities.ScoreModel)">
+            <summary>
+            修改成绩
+            </summary>
+            <param name="entity">成绩实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Controllers.StudentScoreController.Delete(System.Int32)">
+            <summary>
+            删除成绩
+            </summary>
+            <param name="ScoreId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Controllers.StudentScoreController.StuDelete(System.Int32)">
+            <summary>
+            删除成绩
+            </summary>
+            <param name="StudentId">学生id</param>
+            <returns></returns>
+        </member>
+        <member name="T:StudentDemo.ScoreWebapi.Exstends.SwaggerExstends">
+            <summary>
+            提供Swagger服务扩展
+            </summary>
+        </member>
+        <member name="F:StudentDemo.ScoreWebapi.Exstends.SwaggerExstends.version">
+            <summary>
+            当前API版本，从appsettings.json获取
+            </summary>
+        </member>
+        <member name="F:StudentDemo.ScoreWebapi.Exstends.SwaggerExstends.description">
+            <summary>
+            Swagger描述信息
+            </summary>
+        </member>
+        <member name="F:StudentDemo.ScoreWebapi.Exstends.SwaggerExstends.ApiInfos">
+            <summary>
+            Swagger分组信息，将进行遍历使用
+            </summary>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Exstends.SwaggerExstends.AddSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            AddSwagger服务注册
+            </summary>
+            <param name="services"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Exstends.SwaggerExstends.UseSwaggerUI(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Use已配置完成的SwaggerUI管道
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="T:StudentDemo.ScoreWebapi.Exstends.SwaggerApiInfo">
+            <summary>
+            Swagger接口信息
+            </summary>
+        </member>
+        <member name="P:StudentDemo.ScoreWebapi.Exstends.SwaggerApiInfo.UrlPrefix">
+            <summary>
+            URL前缀
+            </summary>
+        </member>
+        <member name="P:StudentDemo.ScoreWebapi.Exstends.SwaggerApiInfo.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:StudentDemo.ScoreWebapi.Exstends.SwaggerApiInfo.OpenApiInfo">
+            <summary>
+            <see cref="T:Microsoft.OpenApi.Models.OpenApiInfo"/>
+            </summary>
+        </member>
+        <member name="T:StudentDemo.ScoreWebapi.Models.ScoreDbContext">
+            <summary>
+            数据库上下文
+            </summary>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Models.ScoreDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{StudentDemo.ScoreWebapi.Models.ScoreDbContext})">
+            <summary>
+            有参构造函数
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="P:StudentDemo.ScoreWebapi.Models.ScoreDbContext.scores">
+            <summary>
+            学生成绩表
+            </summary>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Models.ScoreDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Models.ScoreDbContext.OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:StudentDemo.ScoreWebapi.Models.ScoreDbContext.RandomScore">
+            <summary>
+            随机函数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:StudentDemo.ScoreWebapi.Services.ScoreService">
+            <summary>
+            分数服务类
+            </summary>
+        </member>
+        <member name="T:StudentDemo.Score.Controllers.WeatherForecastController">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

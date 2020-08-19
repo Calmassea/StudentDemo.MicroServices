@@ -1,0 +1,137 @@
+﻿@model StudentDemo.MainWebClient.ViewModels.StudentViewModel
+@{
+    ViewData["Title"] = "学生编辑页面";
+}
+@{ 
+    await Html.RenderPartialAsync("~/Views/Shared/CssPartial/_FormStylePartial.cshtml");
+}
+@Html.AntiForgeryToken()
+<div class="row justify-content-center">
+    <div class="col-md-10
+         col-11 ">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-12">
+                        <h3 class=" text-center">@{var name = Model.Student.Name + "的信息编辑";} @name</h3>
+                        <p class="text-center font-14 mb-0">
+                            以下均为测试数据
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <form asp-action="Edit"
+                              data-ajax-failure="onFailed"
+                              data-ajax-success="onSuccess"
+                              data-ajax="true"
+                              data-ajax-confirm="确认要提交吗？"
+                              data-ajax-method="post">
+                            <div class="form-group mb-2">
+                                <div class="row">
+                                    <div class="col-2"><span class="align-middle"><label>学生ID：</label></span></div>
+                                    <div class="col-10"><input type="text" asp-for="Student.ID" readonly class="form-control-plaintext" id="sid" value="@Model.Student.ID"></div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>姓名：</label>
+                                <input type="text"asp-for="Student.Name" id="sname" class="form-control" value="@Model.Student.Name">
+                                <span class="help-block"><small>姓名信息.</small></span>
+                                <span asp-validation-for="Student.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>年龄：</label>
+                                <input class="form-control"asp-for="Student.Age" id="sage" type="number" value="@Model.Student.Age">
+                            </div>
+                            @*<div class="form-group mb-3">
+                                <label>IP 地址：</label>
+                                <input type="text"asp-for="Student.ip" class="form-control" id="sip" value="@Model.Student.ip">
+                                <span class="font-13 text-muted">格式 "xxx.xxx.xxx.xxx"</span>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label>端口：</label>
+                                <input type="text"asp-for="Student.port" class="form-control" id="sport" value="@Model.Student.port">
+                                <span class="help-block"><small>端口号.</small></span>
+                            </div>*@
+
+                            <div class="form-row mb-3">
+                                <div class="form-group col-md-6">
+                                    <label>专业：</label>
+                                    <input type="text"asp-for="Student.Profession" id="sprofession" class="form-control" value="@Model.Student.Profession">
+                                    <span class="help-block"><small>所学专业.</small></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>班级：</label>
+                                    <input type="text"asp-for="Student.SClass" id="sclass" class="form-control" value="@Model.Student.SClass">
+                                    <span class="help-block"><small>所在班级.</small></span>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6 col-12">
+                                    <button type="submit" class="btn btn-block btn-primary" >确认修改</button>
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <a type="button" class="btn btn-block btn-light" asp-controller="StudentManager" asp-action="Index">取消返回</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{ 
+    @{  
+        await Html.RenderPartialAsync("~/Views/Shared/ScriptsPartial/_JQueryUIScriptPartial.cshtml");
+        await Html.RenderPartialAsync("~/Views/Shared/ScriptsPartial/_ValidationScriptsPartial.cshtml");
+      }
+    <script type="text/javascript">
+        var onSuccess = function (context) {
+            console.log(context.entities);
+            var result = context.entities;
+             console.log(result.id);
+            $("#sname").val(result.name);
+            $("#sage").val(result.age);
+            //$("#sip").val(result.ip);
+            //$("#sport").val(result.port);
+            $("#sprofession").val(result.profession);
+            $("#sclass").val(result.sClass);
+            alert("更新成功！");
+        };
+        var onFailed = function (context) {
+            alert("更新失败！");
+        };
+        //function update() {
+        //    var formdata = $("#student-form").serialize();
+        //    console.log(formdata);
+        //    $.ajax({
+        //        type: 'Post',//可选get
+        //        url: '/StudentManager/Edit',
+        //        beforeSend: function (xhr) {
+        //            xhr.setRequestHeader("XSRF-TOKEN",
+        //                $('input:hidden[name="__RequestVerificationToken"]').val());
+        //        },
+        //        data: {},
+        //        dataType: 'Json',//服务器返回的数据类型 可选XML ,Json jsonp script htmltext等
+        //        success: function (data) {
+        //            console.log(data.entities);
+        //            var result = data.entities;
+        //            console.log(result.id);
+        //            $("#sname").val(result.name);
+        //            $("#sage").val(result.age);
+        //            $("#sip").val(result.ip);
+        //            $("#sport").val(result.port);
+        //            $("#sprofession").val(result.profession);
+        //            $("#sclass").val(result.sClass);
+        //            alert("更新成功！");
+        //        },
+        //        error: function () {
+        //            alert('error');
+        //        }
+        //    })
+        //}
+    </script>
+}

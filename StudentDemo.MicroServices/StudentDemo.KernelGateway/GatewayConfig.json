@@ -1,0 +1,130 @@
+{
+  //切记注意大路由包含小路由
+  "ReRoutes": [
+    //默认apiswagger
+    {
+      "DownstreamPathTemplate": "/docs/hubwebapi/swagger.json",
+      "DownstreamScheme": "http",
+      "ServiceName": "hubWebApi",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/docs/hubwebapi/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+    //学生成绩管理swagger
+    {
+      "DownstreamPathTemplate": "/docs/scorewebapi/swagger.json",
+      "DownstreamScheme": "http",
+      "ServiceName": "ScoreWebApi",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/docs/scorewebapi/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+    //学生信息管理api映射
+    {
+      "DownstreamPathTemplate": "/api/studentservice/{url}", //服务地址--url变量
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/studentservice/{url}", //网关地址--url变量
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "ServiceName": "hubWebApi", //consul中服务名称
+      "UseServiceDiscovery": true, //启动服务发现
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin" //轮询      LeastConnection-最少连接数的服务器   NoLoadBalance不负载均衡
+      },
+
+      ////缓存
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "UserCache" //可以调用Api清理
+      },
+
+      //限流
+      "RateLimitOptions": {
+        "ClientWhitelist": [ "admin" ], //白名单 ClientId 区分大小写
+        "EnableRateLimiting": true,
+        "Period": "1m", //1s, 5m, 1h, 1d限流控制的时间周期
+        "PeriodTimespan": 30, //多少秒之后客户端可以重试
+        "Limit": 5 //统计时间段内允许的最大请求数量
+      },
+
+      //熔断器Polly
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3, //允许多少个异常请求
+        "DurationOfBreak": 10000, //熔断的时间，单位为ms
+        "TimeoutValue": 3000 //如果下游请求的处理时间超过多少则自如将请求设置为超时 默认90秒
+      },
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "NGITKernelGatewayKey",
+        "AllowedScopes": []
+      }
+    },
+    //学生成绩管理
+    {
+      "DownstreamPathTemplate": "/api/scoreservice/{url}", //服务地址--url变量
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/scoreservice/{url}", //网关地址--url变量
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "ServiceName": "ScoreWebApi", //consul中服务名称
+      "UseServiceDiscovery": true, //启动服务发现
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin" //轮询      LeastConnection-最少连接数的服务器   NoLoadBalance不负载均衡
+      },
+
+      ////缓存
+      "FileCacheOptions": {
+        "TtlSeconds": 15,
+        "Region": "UserCache" //可以调用Api清理
+      },
+
+      //限流
+      "RateLimitOptions": {
+        "ClientWhitelist": [ "admin" ], //白名单 ClientId 区分大小写
+        "EnableRateLimiting": true,
+        "Period": "1m", //1s, 5m, 1h, 1d限流控制的时间周期
+        "PeriodTimespan": 30, //多少秒之后客户端可以重试
+        "Limit": 5 //统计时间段内允许的最大请求数量
+      },
+
+      //熔断器Polly
+      "QoSOptions": {
+        "ExceptionsAllowedBeforeBreaking": 3, //允许多少个异常请求
+        "DurationOfBreak": 10000, //熔断的时间，单位为ms
+        "TimeoutValue": 3000 //如果下游请求的处理时间超过多少则自如将请求设置为超时 默认90秒
+      },
+
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "NGITKernelGatewayKey",
+        "AllowedScopes": []
+      }
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://127.0.0.1:6100", //网关对外地址
+    "RequestIdKey": null,
+    "ServiceDiscoveryProvider": {
+      "Host": "127.0.0.1",
+      "Port": 8500,
+      "Type": "Consul" //由Consul提供服务发现
+    },
+
+    //限流全剧配置
+    "RateLimitOptions": {
+      "QuotaExceededMessage": "The system is busy. Please try again later", // 当请求过载被截断时返回的消息
+      "HttpStatusCode": 429 // 当请求过载被截断时返回的http status
+    }
+  },
+  "Swaggersetting": {
+    "Enable": true,
+    "ServiceDocNames": "hubwebapi,scorewebapi",
+    "ServiceApiNames": "StudentServiceApi",
+    "ServiceApiNamesTags": "This Web Hub Api"
+  },
+  "IdentityService4": {
+    "Ip": "127.0.0.1",
+    "Port": "7300",
+    "UseHttps": false
+  }
+}

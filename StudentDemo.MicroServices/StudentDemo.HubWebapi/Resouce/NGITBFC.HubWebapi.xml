@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StudentDemo.HubWebapi</name>
+    </assembly>
+    <members>
+        <member name="T:StudentDemo.HubWebapi.Authorize.AuthorizeCheckOperationFilter">
+            <summary>
+            Ids4认证过滤器
+            </summary>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Authorize.AuthorizeCheckOperationFilter.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <param name="context"></param>
+        </member>
+        <member name="T:StudentDemo.HubWebapi.Controllers.HealthController">
+            <summary>
+            健康检查
+            </summary>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Controllers.HealthController.Index">
+            <summary>
+            健康检查接口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:StudentDemo.HubWebapi.Controllers.StudentController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Controllers.StudentController.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Controllers.StudentController.Get">
+            <summary>
+            获取所有学生
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Controllers.StudentController.Get(System.Int32)">
+            <summary>
+            查找一个学生
+            </summary>
+            <param name="StudentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Controllers.StudentController.Post(StudentDemo.DataDomin.DataUnitTest.Student)">
+            <summary>
+            新增学生
+            </summary>
+            <param name="entity">学生实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Controllers.StudentController.Put(StudentDemo.DataDomin.DataUnitTest.Student)">
+            <summary>
+            修改学生信息
+            </summary>
+            <param name="entity">学生实体</param>
+            <returns></returns>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Controllers.StudentController.Delete(System.Int32)">
+            <summary>
+            删除学生信息
+            </summary>
+            <param name="id">学生Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:StudentDemo.HubWebapi.Program">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Program.Main(System.String[])">
+            <summary>
+            程序入口
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="args"></param>
+            <returns></returns>
+        </member>
+        <member name="T:StudentDemo.HubWebapi.Startup">
+            <summary>
+            中间件配置
+            </summary>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:StudentDemo.HubWebapi.Startup.Configuration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            服务注册
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:StudentDemo.HubWebapi.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            请求管道
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

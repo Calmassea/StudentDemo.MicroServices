@@ -1,0 +1,12 @@
+﻿{
+  "profiles": {
+    "StudentDemo.ScoreWebClient": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:4001",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

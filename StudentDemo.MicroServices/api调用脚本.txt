@@ -1,0 +1,21 @@
+MVC客户端
+dotnet StudentDemo.MainWebClient.dll 
+认证服务器
+dotnet StudentDemo.AuthenticationCenterIds4.dll
+网关
+dotnet StudentDemo.KernelGateway.dll
+服务api
+dotnet StudentDemo.HubWebapi.dll   --urls="http://*:5100" --ip="127.0.0.1" --port=5100
+
+dotnet StudentDemo.HubWebapi.dll   --urls="http://*:5200" --ip="127.0.0.1" --port=5200
+
+dotnet StudentDemo.HubWebapi.dll   --urls="http://*:5300" --ip="127.0.0.1" --port=5300
+
+dotnet StudentDemo.HubWebapi.dll   --urls="http://*:5400" --ip="127.0.0.1" --port=5400
+
+
+dotnet StudentDemo.ScoreWebapi.dll  --urls="http://*:5101" --ip="127.0.0.1" --port=5101
+
+dotnet StudentDemo.ScoreWebapi.dll  --urls="http://*:5201" --ip="127.0.0.1" --port=5201
+
+dotnet StudentDemo.ScoreWebapi.dll  --urls="http://*:5301" --ip="127.0.0.1" --port=5301

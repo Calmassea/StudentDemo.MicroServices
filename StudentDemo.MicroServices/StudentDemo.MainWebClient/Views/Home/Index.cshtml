@@ -1,0 +1,23 @@
+﻿@model StudentDemo.MainWebClient.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+
+        @if (Model.Students != null)
+        {
+            foreach (var item in Model.Students)
+            {
+                <p>ID：@item.ID---姓名：@item.Name---年龄：@item.Age--@item.Profession--@item.SClass</p>
+
+            }
+        }
+        else
+        {
+            <p>超时</p>
+        }
+
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
